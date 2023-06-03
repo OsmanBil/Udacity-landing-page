@@ -40,7 +40,18 @@
 
 // build the nav
 
+function buildNavBar () {
+   const navBarList = document.getElementById('navbar__list');
 
+   navBarList.innerHTML = 
+   '<li><p style="color: black;">Navigation 1</p></li>\
+    <li><p style="color: black;">Navigation 2</p></li>\
+    <li><p style="color: black;">Navigation 3</p></li>\
+    <li><p style="color: black;">Navigation 4</p></li>';
+
+}
+
+buildNavBar();
 // Add class 'active' to section when near top of viewport
 
 
