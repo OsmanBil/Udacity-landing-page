@@ -40,18 +40,18 @@
 
 // build the nav
 
-function buildNavBar () {
-   const navBarList = document.getElementById('navbar__list');
-
-   navBarList.innerHTML = 
-   '<li><p style="color: black;">Navigation 1</p></li>\
-    <li><p style="color: black;">Navigation 2</p></li>\
-    <li><p style="color: black;">Navigation 3</p></li>\
-    <li><p style="color: black;">Navigation 4</p></li>';
-
+function buildNavBar() {
+    const navBarList = document.getElementById('navbar__list');
+    for (let i = 1; i < 5; i++) {
+        const element = document.createElement('li');
+        const anchor = document.createElement('a');
+        anchor.href = '#section' + i;
+        anchor.textContent = 'Navigation ' + i;
+        element.appendChild(anchor);
+        navBarList.appendChild(element);
+    }
 }
 
-buildNavBar();
 // Add class 'active' to section when near top of viewport
 
 
@@ -65,8 +65,26 @@ buildNavBar();
 */
 
 // Build menu 
+buildNavBar();
 
 // Scroll to section on link click
-
+document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve the navigation menu
+    const navBar = document.getElementById('navBar');
+    // Attach a click event listener to the navigation menu
+    navBar.addEventListener('click', (event) => {
+        // Check if the clicked element is an anchor tag
+        if (event.target.tagName === 'A') {
+            // Prevent the default anchor link behavior
+            event.preventDefault();
+            // Retrieve the target section's id from the href attribute
+            const targetSectionId = event.target.getAttribute('href');
+            // Retrieve the target section element
+            const targetSection = document.querySelector(targetSectionId);
+            // Scroll to the target section using smooth scrolling
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
 // Set sections as active
 
