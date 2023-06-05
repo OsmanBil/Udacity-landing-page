@@ -39,7 +39,6 @@
 */
 
 // build the nav
-
 function buildNavBar() {
     const navBarList = document.getElementById('navbar__list');
     for (let i = 1; i < 5; i++) {
@@ -53,6 +52,17 @@ function buildNavBar() {
 }
 
 // Add class 'active' to section when near top of viewport
+// Function to check if an element is in viewport
+const isInViewport = (element) => {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+};
+
 
 
 // Scroll to anchor ID using scrollTO event
@@ -68,9 +78,6 @@ function buildNavBar() {
 buildNavBar();
 
 // Scroll to section on link click
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const navBar = document.getElementById('navBar');
     navBar.addEventListener('click', (event) => {
@@ -105,13 +112,54 @@ function highlightActiveLink() {
 
 }
 
-// Function to check if an element is in viewport
-const isInViewport = (element) => {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-};
+
+const header = document.getElementById('page__header');
+let isHeaderVisible = false;
+let timeoutId;
+
+window.addEventListener('load', handleLoad);
+window.addEventListener('scroll', handleScroll);
+
+function handleLoad() {
+    if (window.pageYOffset === 0) {
+        showHeader();
+    }
+}
+
+function handleScroll() {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(function () {
+        hideHeader();
+    }, 3000);
+
+    if (window.pageYOffset < 200) {
+        clearTimeout(timeoutId);
+        showHeader();
+    } else {
+        showHeader();
+    }
+}
+
+function showHeader() {
+    if (!isHeaderVisible) {
+        header.classList.remove('fade-out');
+        header.classList.remove('display-none');
+        header.classList.add('fade-in');
+        isHeaderVisible = true;
+    }
+}
+
+function hideHeader() {
+    if (isHeaderVisible) {
+        header.classList.remove('fade-in');
+        header.classList.add('fade-out');
+        setTimeout(function () {
+            header.classList.add('display-none');
+        }, 3000);
+        isHeaderVisible = false;
+    }
+}
+
+
+
