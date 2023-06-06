@@ -136,8 +136,10 @@ function handleScroll() {
     if (window.pageYOffset < 200) {
         clearTimeout(timeoutId);
         showHeader();
+        showScrollToTop();
     } else {
         showHeader();
+        showScrollToTop();
     }
 }
 
@@ -164,11 +166,12 @@ function hideHeader() {
 
 const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
-window.addEventListener('scroll', handleScroll);
+
 scrollToTopBtn.addEventListener('click', scrollToTop);
 
 
-function handleScroll() {
+
+function showScrollToTop() {
     if (window.pageYOffset > 0) {
       scrollToTopBtn.classList.add('show');
     } else {
