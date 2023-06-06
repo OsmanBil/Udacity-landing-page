@@ -162,4 +162,23 @@ function hideHeader() {
 }
 
 
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
+window.addEventListener('scroll', handleScroll);
+scrollToTopBtn.addEventListener('click', scrollToTop);
+
+
+function handleScroll() {
+    if (window.pageYOffset > 0) {
+      scrollToTopBtn.classList.add('show');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+    }
+  }
+
+function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
