@@ -46,6 +46,7 @@ function buildNavBar() {
         const anchor = document.createElement('a');
         anchor.href = '#section' + i;
         anchor.textContent = 'Navigation ' + i;
+        anchor.classList.add('menu__link');
         element.appendChild(anchor);
         navBarList.appendChild(element);
     }
@@ -131,7 +132,7 @@ function handleScroll() {
 
     timeoutId = setTimeout(function () {
         hideHeader();
-    }, 3000);
+    }, 100000);
 
     if (window.pageYOffset < 200) {
         clearTimeout(timeoutId);
@@ -158,7 +159,7 @@ function hideHeader() {
         header.classList.add('fade-out');
         setTimeout(function () {
             header.classList.add('display-none');
-        }, 3000);
+        }, 130000);
         isHeaderVisible = false;
     }
 }
