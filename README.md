@@ -5,7 +5,7 @@ Udacity-Landing Page
 To quickly see a demo of the project, follow these steps:
 
 1. Clone the repository:
-    git clone https://github.com/your-username/my-web-project.git
+    git clone https://github.com/OsmanBil/Udacity-landing-page
 
 2. Navigate to the project directory:
     cd my-web-project
