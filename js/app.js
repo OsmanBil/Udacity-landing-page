@@ -8,6 +8,11 @@ window.addEventListener('scroll', handleScroll);
 
 
 /**
+* @description Build Navigation Bar on page load
+*/
+buildNavBar();
+
+/**
 * @description Creates the navigation bar
 */
 function buildNavBar() {
@@ -35,9 +40,6 @@ const isInViewport = (element) => {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
-
-// Build menu 
-buildNavBar();
 
 /**
 * @description Scroll to section on link click
