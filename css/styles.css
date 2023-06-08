@@ -74,18 +74,6 @@ section {
     height: 100%;
 }
 
-/* .navbar__menu li {
-    padding-right: 12px;
-    display: inline-block;
-    color: black;
-} */
-
-/* .navbar__menu li a{
-    text-decoration: none;
-    color: black;
-} */
-
-
 .navbar__menu .menu__link {
     display: block;
     padding: 1em;
@@ -104,17 +92,11 @@ section {
     list-style-type: none;
 }
 
-
-
-
-
-
 .active {
     color: #ffffff !important;
     background-color: black;
     /* or any other style to highlight the active link */
 }
-
 
 /* Header Styles */
 .page__header {
@@ -134,7 +116,6 @@ section {
 #page__header.fade-in {
     opacity: 1;
 }
-
 
 .scroll-to-top-btn {
     position: fixed;

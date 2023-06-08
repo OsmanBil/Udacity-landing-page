@@ -1,44 +1,15 @@
-/**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
-*/
+let isHeaderVisible = false;
+let timeoutId;
 
-/**
- * Comments should be present at the beginning of each procedure and class.
- * Great to have comments before crucial code sections within the procedure.
-*/
+const header = document.getElementById('page__header');
 
-/**
- * Define Global Variables
- * 
-*/
+window.addEventListener('load', handleLoad);
+window.addEventListener('scroll', handleScroll);
 
 
 /**
- * End Global Variables
- * Start Helper Functions
- * 
+* @description Creates the navigation bar
 */
-
-
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
 function buildNavBar() {
     const navBarList = document.getElementById('navbar__list');
     for (let i = 1; i < 5; i++) {
@@ -52,8 +23,9 @@ function buildNavBar() {
     }
 }
 
-// Add class 'active' to section when near top of viewport
-// Function to check if an element is in viewport
+/**
+* @description Function to check if an element is in viewport
+*/
 const isInViewport = (element) => {
     const rect = element.getBoundingClientRect();
     return (
@@ -64,21 +36,12 @@ const isInViewport = (element) => {
     );
 };
 
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
 // Build menu 
 buildNavBar();
 
-// Scroll to section on link click
+/**
+* @description Scroll to section on link click
+*/
 document.addEventListener('DOMContentLoaded', () => {
     const navBar = document.getElementById('navBar');
     navBar.addEventListener('click', (event) => {
@@ -89,38 +52,27 @@ document.addEventListener('DOMContentLoaded', () => {
             targetSection.scrollIntoView({ behavior: 'smooth' });
         }
     });
-
-    // Run the function on scroll event
-    window.addEventListener('scroll', highlightActiveLink);
+    window.addEventListener('scroll', highlightActiveLink); // Run the function on scroll event
 });
 
-// Set sections as active
+/**
+* @description Set sections as active
+*/
 function highlightActiveLink() {
-    // Get all section elements
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('section'); // Get all section elements
     for (let section of sections) {
-        // Get the corresponding navbar link
-        const navLink = document.querySelector(`a[href="#${section.id}"]`);
-
+        const navLink = document.querySelector(`a[href="#${section.id}"]`); // Get the corresponding navbar link
         if (isInViewport(section)) {
-            // Add 'active' class to the corresponding navbar link
-            navLink.classList.add('active');
+            navLink.classList.add('active'); // Add 'active' class to the corresponding navbar link
         } else {
-            // Remove 'active' class
-            navLink.classList.remove('active');
+            navLink.classList.remove('active'); // Remove 'active' class
         }
     }
-
 }
 
-
-const header = document.getElementById('page__header');
-let isHeaderVisible = false;
-let timeoutId;
-
-window.addEventListener('load', handleLoad);
-window.addEventListener('scroll', handleScroll);
-
+/**
+* @description Show header on load
+*/
 function handleLoad() {
     if (window.pageYOffset === 0) {
         showHeader();
@@ -132,7 +84,7 @@ function handleScroll() {
 
     timeoutId = setTimeout(function () {
         hideHeader();
-    }, 100000);
+    }, 3000);
 
     if (window.pageYOffset < 200) {
         clearTimeout(timeoutId);
@@ -144,6 +96,9 @@ function handleScroll() {
     }
 }
 
+/**
+* @description Show header function
+*/
 function showHeader() {
     if (!isHeaderVisible) {
         header.classList.remove('fade-out');
@@ -153,36 +108,38 @@ function showHeader() {
     }
 }
 
+/**
+* @description Hide header function
+*/
 function hideHeader() {
     if (isHeaderVisible) {
         header.classList.remove('fade-in');
         header.classList.add('fade-out');
-        setTimeout(function () {
-            header.classList.add('display-none');
-        }, 130000);
+        header.classList.add('display-none');
         isHeaderVisible = false;
     }
 }
 
-
-const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
-
-scrollToTopBtn.addEventListener('click', scrollToTop);
-
-
-
+/**
+* @description Show scroll to top button if page is not on top
+*/
 function showScrollToTop() {
-    if (window.pageYOffset > 0) {
-      scrollToTopBtn.classList.add('show');
-    } else {
-      scrollToTopBtn.classList.remove('show');
-    }
-  }
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    scrollToTopBtn.addEventListener('click', scrollToTop);
 
+    if (window.pageYOffset > 0) {
+        scrollToTopBtn.classList.add('show');
+    } else {
+        scrollToTopBtn.classList.remove('show');
+    }
+}
+
+/**
+* @description Scroll to top function
+*/
 function scrollToTop() {
     window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+        top: 0,
+        behavior: 'smooth'
     });
-  }
+}
