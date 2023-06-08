@@ -1,5 +1,5 @@
 let isHeaderVisible = false;
-let timeoutId;
+let timeoutToHideNavbar;
 
 const header = document.getElementById('page__header');
 
@@ -71,7 +71,7 @@ function highlightActiveLink() {
 }
 
 /**
-* @description Show header on load
+* @description Show header on page load
 */
 function handleLoad() {
     if (window.pageYOffset === 0) {
@@ -79,15 +79,18 @@ function handleLoad() {
     }
 }
 
+/**
+* @description Handle scroll 
+*/
 function handleScroll() {
-    clearTimeout(timeoutId);
+    clearTimeout(timeoutToHideNavbar);
 
-    timeoutId = setTimeout(function () {
+    timeoutToHideNavbar = setTimeout(function () {
         hideHeader();
     }, 3000);
 
     if (window.pageYOffset < 200) {
-        clearTimeout(timeoutId);
+        clearTimeout(timeoutToHideNavbar);
         showHeader();
         showScrollToTop();
     } else {

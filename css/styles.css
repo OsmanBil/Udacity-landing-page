@@ -95,7 +95,6 @@ section {
 .active {
     color: #ffffff !important;
     background-color: black;
-    /* or any other style to highlight the active link */
 }
 
 /* Header Styles */
