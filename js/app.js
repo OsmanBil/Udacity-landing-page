@@ -16,7 +16,7 @@ function buildNavBar() {
         const element = document.createElement('li');
         const anchor = document.createElement('a');
         anchor.href = '#section' + i;
-        anchor.textContent = 'Navigation ' + i;
+        anchor.textContent = 'Section ' + i;
         anchor.classList.add('menu__link');
         element.appendChild(anchor);
         navBarList.appendChild(element);
@@ -107,6 +107,7 @@ function showHeader() {
         header.classList.remove('fade-out');
         header.classList.remove('display-none');
         header.classList.add('fade-in');
+        header.classList.remove('z-index-99');
         isHeaderVisible = true;
     }
 }
@@ -120,6 +121,7 @@ function hideHeader() {
         header.classList.add('fade-out');
         header.classList.add('display-none');
         isHeaderVisible = false;
+        header.classList.add('z-index-99');
     }
 }
 
