@@ -33,10 +33,11 @@ function buildNavBar() {
 */
 const isInViewport = (element) => {
     const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
     return (
-        rect.top >= 0 &&
+        rect.top >= -100 &&
         rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom <= (windowHeight + 100) &&
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
@@ -66,8 +67,10 @@ function highlightActiveLink() {
         const navLink = document.querySelector(`a[href="#${section.id}"]`); // Get the corresponding navbar link
         if (isInViewport(section)) {
             navLink.classList.add('active'); // Add 'active' class to the corresponding navbar link
+            section.classList.add('active-section');
         } else {
             navLink.classList.remove('active'); // Remove 'active' class
+            section.classList.remove('active-section');
         }
     }
 }

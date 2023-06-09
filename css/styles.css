@@ -165,6 +165,10 @@ section {
     text-align: left;
 }
 
+.active-section{
+        border: 1px solid rgb(229, 42, 42);
+}
+
 @media only screen and (min-width: 35em) {
     .landing__container {
         max-width: 50em;
